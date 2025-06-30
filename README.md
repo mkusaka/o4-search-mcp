@@ -9,7 +9,7 @@ An MCP (Model Context Protocol) server that provides web search capabilities usi
 Claude Code:
 
 ```
-$ claude mcp add o4 -s user \
+$ claude mcp add search -s user \
 	-e OPENAI_API_KEY=your-api-key \
 	-e SEARCH_CONTEXT_SIZE=high \
 	-e REASONING_EFFORT=high \
@@ -50,7 +50,7 @@ If you want to download and run the code locally:
 Claude Code:
 
 ```
-$ claude mcp add o4 -s user \
+$ claude mcp add search -s user \
 	-e OPENAI_API_KEY=your-api-key \
 	-e SEARCH_CONTEXT_SIZE=high \
 	-e REASONING_EFFORT=high \
