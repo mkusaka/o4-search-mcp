@@ -6,8 +6,28 @@ import { z } from "zod";
 
 // Create server instance
 const server = new McpServer({
-  name: "o3-search-mcp",
+  name: "o4-search-mcp",
   version: "0.0.1",
+}, {
+  instructions: `This extension provides advanced web search capabilities powered by OpenAI's o4-mini model. It's designed to help find the latest information, troubleshoot errors, and answer complex questions with comprehensive web research.
+
+Capabilities:
+1. Advanced natural language web search with deep reasoning capabilities.
+2. Real-time information retrieval from the web for current events and recent data.
+3. Comprehensive troubleshooting support for technical issues and error messages.
+4. Context-aware searching with configurable search context size and reasoning effort.
+
+When to use the o4-search tool:
+- When you need up-to-date information beyond your knowledge cutoff
+- For troubleshooting specific errors or technical issues
+- When comprehensive web research is needed for accurate answers
+- For fact-checking or finding latest developments on a topic
+
+Configuration options:
+- SEARCH_CONTEXT_SIZE: Controls the breadth of search results (low/medium/high)
+- REASONING_EFFORT: Controls the depth of analysis (low/medium/high)
+
+The tool accepts natural language queries in English and provides detailed, well-researched responses based on current web information.`
 });
 
 // Initialize OpenAI client
@@ -16,18 +36,18 @@ const openai = new OpenAI({
 });
 
 // Configuration from environment variables
-const searchContextSize = (process.env.SEARCH_CONTEXT_SIZE || 'medium') as 'low' | 'medium' | 'high';
-const reasoningEffort = (process.env.REASONING_EFFORT || 'medium') as 'low' | 'medium' | 'high';
+const searchContextSize = (process.env.SEARCH_CONTEXT_SIZE || 'high') as 'low' | 'medium' | 'high';
+const reasoningEffort = (process.env.REASONING_EFFORT || 'high') as 'low' | 'medium' | 'high';
 
 // Define the o3-search tool
 server.tool(
-  "o3-search",
+  "o4-search",
   `An AI agent with advanced web search capabilities. Useful for finding latest information and troubleshooting errors. Supports natural language queries.`,
   { input: z.string().describe('Ask questions, search for information, or consult about complex problems in English.'), },
   async ({ input }) => {
     try {
       const response = await openai.responses.create({
-        model: 'o3',
+        model: 'o4-mini',
         input,
         tools: [{ type: 'web_search_preview', search_context_size: searchContextSize }],
         tool_choice: 'auto',

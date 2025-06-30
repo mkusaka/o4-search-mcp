@@ -1,32 +1,32 @@
 {
-  "name": "o3-search-mcp",
+  "name": "@mkusaka/mcp-server-o4-search",
   "version": "0.0.3",
   "main": "build/index.js",
   "bin": {
-    "o3-search-mcp": "./build/index.js"
+    "mcp-server-o4-search": "./build/index.js"
   },
   "files": [
     "build/"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yoshiko-pg/o3-search-mcp.git"
+    "url": "git+https://github.com/mkusaka/o4-search-mcp.git"
   },
   "bugs": {
-    "url": "https://github.com/yoshiko-pg/o3-search-mcp/issues"
+    "url": "https://github.com/mkusaka/o4-search-mcp/issues"
   },
-  "homepage": "https://github.com/yoshiko-pg/o3-search-mcp#readme",
+  "homepage": "https://github.com/mkusaka/o4-search-mcp#readme",
   "keywords": [
     "mcp",
     "claude",
     "openai",
-    "o3",
+    "o4-mini",
     "chatgpt",
     "llm"
   ],
-  "author": "@yoshiko-pg",
+  "author": "@mkusaka",
   "license": "MIT",
-  "description": "mcp server for web search by OpenAI o3 model",
+  "description": "mcp server for web search by OpenAI o4-mini model",
   "type": "module",
   "packageManager": "pnpm@10.10.0",
   "scripts": {
