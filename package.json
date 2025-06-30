@@ -29,6 +29,9 @@
   "description": "mcp server for web search by OpenAI o4-mini model",
   "type": "module",
   "packageManager": "pnpm@10.10.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc && chmod +x build/index.js",
     "prepublishOnly": "pnpm run build"
