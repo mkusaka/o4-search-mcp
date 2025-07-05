@@ -10,10 +10,10 @@ Claude Code:
 
 ```
 $ claude mcp add search -s user \
-	-e OPENAI_API_KEY=your-api-key \
-	-e SEARCH_CONTEXT_SIZE=high \
-	-e REASONING_EFFORT=high \
-	-- npx @mkusaka/mcp-server-o4-search
+  -e OPENAI_API_KEY=your-api-key \
+  -e SEARCH_CONTEXT_SIZE=high \
+  -e REASONING_EFFORT=high \
+  -- npx @mkusaka/mcp-server-o4-search
 ```
 
 json:
@@ -51,10 +51,10 @@ Claude Code:
 
 ```
 $ claude mcp add search -s user \
-	-e OPENAI_API_KEY=your-api-key \
-	-e SEARCH_CONTEXT_SIZE=high \
-	-e REASONING_EFFORT=high \
-	-- node /path/to/o4-search-mcp/build/index.js
+  -e OPENAI_API_KEY=your-api-key \
+  -e SEARCH_CONTEXT_SIZE=high \
+  -e REASONING_EFFORT=high \
+  -- node /path/to/o4-search-mcp/build/index.js
 ```
 
 json:
