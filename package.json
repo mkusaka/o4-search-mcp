@@ -1,6 +1,6 @@
 {
   "name": "@mkusaka/mcp-server-o4-search",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "build/index.js",
   "bin": {
     "mcp-server-o4-search": "./build/index.js"
