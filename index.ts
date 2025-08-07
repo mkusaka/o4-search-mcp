@@ -9,7 +9,7 @@ const server = new McpServer({
   name: "o4-search-mcp",
   version: "0.0.1",
 }, {
-  instructions: `This extension provides advanced web search capabilities powered by OpenAI's o4-mini model. It's designed to help find the latest information, troubleshoot errors, and answer complex questions with comprehensive web research.
+  instructions: `This extension provides advanced web search capabilities powered by OpenAI models. It's designed to help find the latest information, troubleshoot errors, and answer complex questions with comprehensive web research.
 
 Capabilities:
 1. Advanced natural language web search with deep reasoning capabilities.
@@ -24,6 +24,7 @@ When to use the o4-search tool:
 - For fact-checking or finding latest developments on a topic
 
 Configuration options:
+- OPENAI_MODEL: Specify the OpenAI model to use (default: o4-mini, supports o4-mini, gpt-5, etc.)
 - SEARCH_CONTEXT_SIZE: Controls the breadth of search results (low/medium/high)
 - REASONING_EFFORT: Controls the depth of analysis (low/medium/high)
 
@@ -38,6 +39,7 @@ const openai = new OpenAI({
 // Configuration from environment variables
 const searchContextSize = (process.env.SEARCH_CONTEXT_SIZE || 'high') as 'low' | 'medium' | 'high';
 const reasoningEffort = (process.env.REASONING_EFFORT || 'high') as 'low' | 'medium' | 'high';
+const modelName = process.env.OPENAI_MODEL || 'o4-mini';
 
 // Define the o3-search tool
 server.tool(
@@ -47,7 +49,7 @@ server.tool(
   async ({ input }) => {
     try {
       const response = await openai.responses.create({
-        model: 'o4-mini',
+        model: modelName,
         input,
         tools: [{ type: 'web_search_preview', search_context_size: searchContextSize }],
         tool_choice: 'auto',

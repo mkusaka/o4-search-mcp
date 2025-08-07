@@ -1,6 +1,12 @@
 # o4-search-mcp
 
-An MCP (Model Context Protocol) server that provides web search capabilities using OpenAI's o4-mini model. The `o4-search` tool accepts text queries and returns AI-powered search results with advanced reasoning capabilities.
+An MCP (Model Context Protocol) server that provides web search capabilities using OpenAI models. The `o4-search` tool accepts text queries and returns AI-powered search results with advanced reasoning capabilities.
+
+## Supported Models
+
+- `o4-mini` (default)
+- `gpt-5`
+- Any other OpenAI model that supports the responses API with web search tools
 
 ## Installation
 
@@ -11,6 +17,7 @@ Claude Code:
 ```
 $ claude mcp add search -s user \
   -e OPENAI_API_KEY=your-api-key \
+  -e OPENAI_MODEL=o4-mini \
   -e SEARCH_CONTEXT_SIZE=high \
   -e REASONING_EFFORT=high \
   -- npx @mkusaka/mcp-server-o4-search
@@ -26,6 +33,8 @@ json:
       "args": ["@mkusaka/mcp-server-o4-search"],
       "env": {
         "OPENAI_API_KEY": "your-api-key",
+        // Optional: o4-mini, gpt-5, etc. (default: o4-mini)
+        "OPENAI_MODEL": "o4-mini",
         // Optional: low, medium, high (default: high)
         "SEARCH_CONTEXT_SIZE": "high",
         "REASONING_EFFORT": "high"
@@ -52,6 +61,7 @@ Claude Code:
 ```
 $ claude mcp add search -s user \
   -e OPENAI_API_KEY=your-api-key \
+  -e OPENAI_MODEL=o4-mini \
   -e SEARCH_CONTEXT_SIZE=high \
   -e REASONING_EFFORT=high \
   -- node /path/to/o4-search-mcp/build/index.js
@@ -67,6 +77,8 @@ json:
       "args": ["/path/to/o4-search-mcp/build/index.js"],
       "env": {
         "OPENAI_API_KEY": "your-api-key",
+        // Optional: o4-mini, gpt-5, etc. (default: o4-mini)
+        "OPENAI_MODEL": "o4-mini",
         // Optional: low, medium, high (default: high)
         "SEARCH_CONTEXT_SIZE": "high",
         "REASONING_EFFORT": "high"

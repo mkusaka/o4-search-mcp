@@ -26,7 +26,7 @@
   ],
   "author": "@mkusaka",
   "license": "MIT",
-  "description": "mcp server for web search by OpenAI o4-mini model",
+  "description": "MCP server for web search using OpenAI models (o4-mini, gpt-5, etc.)",
   "type": "module",
   "packageManager": "pnpm@10.10.0",
   "publishConfig": {
