@@ -1,8 +1,8 @@
-# o4-search-mcp
+# @mkusaka/o4-search-mcp
 
 An MCP (Model Context Protocol) server that provides web search capabilities using OpenAI models. The `o4-search` tool accepts text queries and returns AI-powered search results with advanced reasoning capabilities.
 
-> Note: This repository is a fork of [yoshiko-pg/o3-search-mcp](https://github.com/yoshiko-pg/o3-search-mcp).
+> Note: This is a personal fork of [yoshiko-pg/o3-search-mcp](https://github.com/yoshiko-pg/o3-search-mcp) maintained for my own use. The original author is not involved with this repository, its releases, or support.
 
 ## Supported Models
 
