@@ -5,11 +5,13 @@ import OpenAI from "openai";
 import { z } from "zod";
 
 // Create server instance
-const server = new McpServer({
-  name: "o4-search-mcp",
-  version: "0.0.1",
-}, {
-  instructions: `This extension provides advanced web search capabilities powered by OpenAI models. It's designed to help find the latest information, troubleshoot errors, and answer complex questions with comprehensive web research.
+const server = new McpServer(
+  {
+    name: "o4-search-mcp",
+    version: "0.0.1",
+  },
+  {
+    instructions: `This extension provides advanced web search capabilities powered by OpenAI models. It's designed to help find the latest information, troubleshoot errors, and answer complex questions with comprehensive web research.
 
 Capabilities:
 1. Advanced natural language web search with deep reasoning capabilities.
@@ -28,8 +30,9 @@ Configuration options:
 - SEARCH_CONTEXT_SIZE: Controls the breadth of search results (low/medium/high)
 - REASONING_EFFORT: Controls the depth of analysis (low/medium/high)
 
-The tool accepts natural language queries in English and provides detailed, well-researched responses based on current web information.`
-});
+The tool accepts natural language queries in English and provides detailed, well-researched responses based on current web information.`,
+  },
+);
 
 // Initialize OpenAI client
 const openai = new OpenAI({
@@ -37,25 +40,42 @@ const openai = new OpenAI({
 });
 
 // Configuration from environment variables
-const searchContextSize = (process.env.SEARCH_CONTEXT_SIZE || 'high') as 'low' | 'medium' | 'high';
-const reasoningEffort = (process.env.REASONING_EFFORT || 'high') as 'low' | 'medium' | 'high';
-const modelName = process.env.OPENAI_MODEL || 'o4-mini';
+const searchContextSize = (process.env.SEARCH_CONTEXT_SIZE || "high") as
+  | "low"
+  | "medium"
+  | "high";
+const reasoningEffort = (process.env.REASONING_EFFORT || "high") as
+  | "low"
+  | "medium"
+  | "high";
+const modelName = process.env.OPENAI_MODEL || "o4-mini";
 
 // Define the o3-search tool
 server.tool(
   "o4-search",
   `An AI agent with advanced web search capabilities. Useful for finding latest information and troubleshooting errors. Supports natural language queries.`,
-  { input: z.string().describe('Ask questions, search for information, or consult about complex problems in English.'), },
+  {
+    input: z
+      .string()
+      .describe(
+        "Ask questions, search for information, or consult about complex problems in English.",
+      ),
+  },
   async ({ input }) => {
     try {
       const response = await openai.responses.create({
         model: modelName,
         input,
-        tools: [{ type: 'web_search_preview', search_context_size: searchContextSize }],
-        tool_choice: 'auto',
+        tools: [
+          {
+            type: "web_search_preview",
+            search_context_size: searchContextSize,
+          },
+        ],
+        tool_choice: "auto",
         parallel_tool_calls: true,
         reasoning: { effort: reasoningEffort },
-      })
+      });
 
       return {
         content: [
@@ -76,7 +96,7 @@ server.tool(
         ],
       };
     }
-  }
+  },
 );
 
 async function main() {
