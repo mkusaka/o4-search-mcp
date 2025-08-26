@@ -34,7 +34,12 @@
   },
   "scripts": {
     "build": "tsc && chmod +x build/index.js",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "oxlint",
+    "typecheck": "tsc --noEmit",
+    "check": "pnpm run format:check && pnpm run typecheck && pnpm run lint"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.13.2",
@@ -43,6 +48,8 @@
   },
   "devDependencies": {
     "@types/node": "^24.0.4",
+    "oxlint": "^1.13.0",
+    "prettier": "^3.6.2",
     "typescript": "^5.8.3"
   }
 }
