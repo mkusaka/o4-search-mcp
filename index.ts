@@ -3,12 +3,13 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import OpenAI from "openai";
 import { z } from "zod";
+import packageJson from "./package.json" with { type: "json" };
 
 // Create server instance
 const server = new McpServer(
   {
     name: "o4-search-mcp",
-    version: "0.0.1",
+    version: packageJson.version,
   },
   {
     instructions: `This extension provides advanced web search capabilities powered by OpenAI models. It's designed to help find the latest information, troubleshoot errors, and answer complex questions with comprehensive web research.
